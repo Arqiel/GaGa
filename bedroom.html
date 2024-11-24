@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ნადირობის შთაბეჭდილებები</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            background-color: #2e2b2b; /* ტყისფერი ფონისთვის */
+            color: #f4f4f4;
+            display: flex;
+        }
+
+        /* კონტეინერი */
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* მთავარი ფლეიერის განყოფილება */
+        .main-player {
+            flex: 3;
+            padding: 20px;
+            background: linear-gradient(135deg, #4d4b47, #2e2b2b);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            border-right: 3px solid #605e5e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .main-player video {
+            max-width: 640px;
+            max-height: 360px;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            border: 3px solid #a08449; /* ოქროსფერი */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+        }
+
+        .main-player h1 {
+            font-size: 26px;
+            margin: 15px 0;
+            color: #f4d03f; /* მზე */
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .main-player p {
+            font-size: 18px;
+            color: #c5c5c5;
+        }
+
+        /* ვიდეოების სია */
+        .video-list {
+            flex: 1;
+            padding: 20px;
+            background: linear-gradient(135deg, #605e5e, #4d4b47);
+            overflow-y: auto; /* სქროლი ვერტიკალური */
+            max-height: 100%; /* ეკრანის სიმაღლის ლიმიტი */
+            scrollbar-width: thin; /* ფაირფოქსისთვის */
+            scrollbar-color: #a08449 #4d4b47;
+        }
+
+        /* სქროლის სტილი */
+        .video-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .video-list::-webkit-scrollbar-thumb {
+            background: #a08449; /* ოქროსფერი */
+            border-radius: 10px;
+            border: 2px solid #4d4b47; /* ფონისფერი */
+        }
+
+        .video-list::-webkit-scrollbar-track {
+            background: #4d4b47;
+        }
+
+        .video-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 8px;
+            background-color: #4d4b47;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-item:hover {
+            background-color: #3b3a36;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .video-item img {
+            width: 100px;
+            height: 70px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 2px solid #a08449;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-item h3 {
+            font-size: 16px;
+            margin: 0;
+            color: #f4d03f;
+        }
+
+        .video-item p {
+            font-size: 12px;
+            color: #c5c5c5;
+        }
+    </style>
+</head>
+
+<style>
+    .main-link:hover {
+        background-color: #004c99; /* მუქი ცისფერი */
+        transform: scale(1.05);
+    }
+</style>
+
+<body>
+<div class="container">
+    <!-- მარცხენა ფლეიერი -->
+    <div class="main-player">
+        <video id="mainVideo" controls>
+            <source src="video1.mp4" type="video/mp4">
+            თქვენი ბრაუზერი არ უჭერს მხარს ვიდეოს დაკვრას.
+        </video>
+        <h1 id="videoTitle">ვიდეოს სათაური</h1>
+        <p id="videoDescription">აღწერა: ამ ვიდეოში ნაჩვენებია ნადირობის მომენტები.</p>
+    </div>
+
+    <!-- მარჯვენა ვიდეოების სია -->
+    <div class="video-list">
+        <div class="video-item" onclick="playVideo('VIDEO/001.mp4', 'შთაბეჭდილებები 1', 'ეს არის პირველი ვიდეო')">
+            <img src="images.jpg" alt="ვიდეო 1">
+            <div>
+                <h3>შთაბეჭდილებები 1</h3>
+                <p>ეს არის პირველი ვიდეო.</p>
+            </div>
+        </div>
+        <!-- დამატებით ვიდეოები -->
+        <div class="video-item" onclick="playVideo('video2.mp4', 'შთაბეჭდილებები 2', 'ეს არის მეორე ვიდეო')">
+            <img src="thumbnail2.jpg" alt="ვიდეო 2">
+            <div>
+                <h3>შთაბეჭდილებები 2</h3>
+                <p>ეს არის მეორე ვიდეო.</p>
+            </div>
+        </div>
+        <div class="video-item" onclick="playVideo('video3.mp4', 'შთაბეჭდილებები 3', 'ეს არის მესამე ვიდეო')">
+            <img src="thumbnail3.jpg" alt="ვიდეო 3">
+            <div>
+                <h3>შთაბეჭდილებები 3</h3>
+                <p>ეს არის მესამე ვიდეო.</p>
+            </div>
+        </div>
+        <div class="video-item" onclick="playVideo('video2.mp4', 'შთაბეჭდილებები 2', 'ეს არის მეორე ვიდეო')">
+            <img src="thumbnail2.jpg" alt="ვიდეო 2">
+            <div>
+                <h3>შთაბეჭდილებები 2</h3>
+                <p>ეს არის მეორე ვიდეო.</p>
+            </div>
+        </div>
+        <div class="video-item" onclick="playVideo('video3.mp4', 'შთაბეჭდილებები 3', 'ეს არის მესამე ვიდეო')">
+            <img src="thumbnail3.jpg" alt="ვიდეო 3">
+            <div>
+                <h3>შთაბეჭდილებები 3</h3>
+                <p>ეს არის მესამე ვიდეო.</p>
+            </div>
+        </div>
+        <!--  მეტი ვიდეო -->
+        <div class="video-item" onclick="playVideo('video4.mp4', 'შთაბეჭდილებები 4', 'ეს არის მეოთხე ვიდეო')">
+            <img src="thumbnail4.jpg" alt="ვიდეო 4">
+            <div>
+                <h3>შთაბეჭდილებები 4</h3>
+                <p>ეს არის მეოთხე ვიდეო.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function playVideo(videoSrc, title, description) {
+        const mainVideo = document.getElementById('mainVideo');
+        const videoTitle = document.getElementById('videoTitle');
+        const videoDescription = document.getElementById('videoDescription');
+
+        // ვიდეოს წყაროს შეცვლა
+        mainVideo.src = videoSrc;
+        mainVideo.play();
+
+        // სათაურისა და აღწერის განახლება
+        videoTitle.textContent = title;
+        videoDescription.textContent = "აღწერა: " + description;
+    }
+</script>
+</body>
+</html>

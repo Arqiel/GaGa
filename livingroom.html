@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ნადირობის გვერდი</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8f5e9; /* ღია მწვანე ფონი */
+        }
+
+        header {
+            background-color: #2e7d32; /* მუქი მწვანე */
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .gallery-item {
+            width: 30%;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border: 2px solid #388e3c; /* მწვანე ჩარჩო */
+            border-radius: 8px; /* რბილი კუთხეები */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ჩრდილი */
+        }
+
+        a.main-link {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            background-color: #43a047; /* ღია მწვანე */
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        a.main-link:hover {
+            background-color: #2e7d32; /* მუქი მწვანე */
+            transform: translateY(-3px); /* პატარა მოძრაობა ზემოთ */
+        }
+
+        a.main-link:active {
+            background-color: #1b5e20; /* ძალიან მუქი მწვანე */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ნადირობის გვერდი</h1>
+    </header>
+
+    <div class="content">
+        <a href="index.html" class="main-link">მთავარი</a>
+        <h2>საუკეთესო ნადირობის ადგილები და რჩევები.</h2>
+
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="კრისტენ01.jpg" alt="ნადირობის ადგილი 1">
+            </div>
+            <div class="gallery-item">
+                <img src="კრისტენ02.jpg" alt="ნადირობის ადგილი 2">
+            </div>
+            <div class="gallery-item">
+                <img src="კრისტენ03.jpg" alt="ნადირობის ადგილი 3">
+            </div>
+        </div>
+
+        <p>დაგვიკავშირდით დეტალებისთვის და საუკეთესო გამოცდილებისთვის!</p>
+    </div>
+</body>
+</html>

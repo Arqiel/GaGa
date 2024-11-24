@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ნადირობა მთაში</title>
+    <style>
+        /* ძირითადი სტილი */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* ჰედერი */
+        header {
+            background-color: #2d6a4f;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        /* ნავიგაცია */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #40916c;
+            padding: 10px 0;
+        }
+
+        nav a, .dropdown .dropbtn {
+            font-size: 16px;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover, .dropdown:hover .dropbtn {
+            background-color: #95d5b2;
+            color: #2d6a4f;
+        }
+
+        /* ჩამოსაშლელი მენიუ */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 10px 15px;
+            display: block;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #40916c;
+            color: white;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* მთავარი კონტენტი */
+        .content {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #2d6a4f;
+        }
+
+        .content p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* ქვედა კოლონტიტული */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2d6a4f;
+            color: white;
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>მოგესალმებით ჩვენს საიტზე</h1>
+</header>
+
+<nav>
+    <a href="#">მთავარი</a>
+
+    <div class="dropdown">
+        <a class="dropbtn" href="#">ისტორია</a>
+        <div class="dropdown-content">
+            <a href="subcategory1.html">შესავალი</a>
+            <a href="livingroom.html">მეორე ქვეკატეგორია</a>
+            <a href="kitchen.html">მესამე ქვეკატეგორია</a>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <a class="dropbtn" href="#">გალერეა</a>
+        <div class="dropdown-content">
+            <a href="bedroom.html">ვიდეო</a>
+            <a href="slaidshiu.html">ფოტო</a>
+            <a href="gallery3.html">მესამე ქვეკატეგორია</a>
+        </div>
+    </div>
+
+    <a href="contact.html">კონტაქტი</a>
+</nav>
+
+<div class="content">
+    <h2>კეთილი იყოს თქვენი მობრძანება!</h2>
+    <p>აირჩიეთ სექცია მენიუდან და აღმოაჩინეთ ჩვენი საიტის შესაძლებლობები.</p>
+</div>
+
+<footer>
+    <p>&copy; 2024 ნადირობა მთაში. ყველა უფლება დაცულია.</p>
+</footer>
+
+</body>
+</html>
