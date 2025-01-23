@@ -1,0 +1,780 @@
+/* ყველა ელემენტზე მარგინებისა და პედინგის ნულირება და გრაფიკის საზომების სწორი გამართვა */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* მთავარი სტილი body-სთვის: ფონტის გამართვა, ფონური ფერი და ტექსტის ფერი */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #dad8de; /* მწვანე ფონური ფერი */
+    color: #333; /* მუქი ნაცრისფერი ტექსტის ფერი */
+}
+
+/* HTML ელემენტის კოდი: გადატანის სრიალის ეფექტის დამატება */
+html {
+    scroll-behavior: smooth; /* აძლევს გვერდს სრიალის ეფექტს */
+}
+
+/* Header-ი: ფონური გრადიენტით და ტექსტის ცენტრი */
+header {
+    --s: 200px; /* control the size*/
+        --c1: #1d1d1d;
+        --c2: #4e4f51;
+        --c3: #3c3c3c;
+        
+        background:
+          repeating-conic-gradient(from 30deg,#0000 0 120deg,var(--c3) 0 50%) 
+           calc(var(--s)/2) calc(var(--s)*tan(30deg)/2),
+          repeating-conic-gradient(from 30deg,var(--c1) 0 60deg,var(--c2) 0 120deg,var(--c3) 0 50%);
+        background-size: var(--s) calc(var(--s)*tan(30deg));
+    color: white;
+    padding: 1em 0;
+    text-align: center; /* ტექსტის ცენტრირება */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* ულამაზესი ჩრდილი */
+    
+}
+
+
+/* მენიუს ძირითადი სტილი: ცენტრირება, ფონური ფერი და გაფორმება */
+nav {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto; /* ცენტრირება */
+    background-color: #3b2f2f; /* მუქი ფერი */
+    border: 2px solid #4a3826; /* მუქი წითელი საზღვარი */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    text-align: center; /* ტექსტის ცენტრი */
+    display: flex; /* ფლექსის კონტეინერი */
+    justify-content: center; /* მენიუს ელემენტების ცენტრი */
+}
+
+/* მენიუს ელემენტების სტილი */
+nav ul {
+    display: flex; /* ელემენტების განლაგება ფლექსით */
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+/* თითოეული მენიუს ელემენტის სტილი */
+nav li {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(145deg, #5a432c, #3b2f2f); /* გრადიენტით ფონური ფერი */
+    color: #f5f2e9; /* თეთრი ტექსტი */
+    border: 1px solid #4a3826; /* საზღვარი */
+    border-radius: 10px;
+    text-transform: uppercase; /* ტექსტის გადაქცევა დიდი ასოებად */
+    font-weight: bold; /* წვეულებრივი წონა */
+    text-shadow: 1px 1px 2px #000; /* ტექსტზე ჩრდილი */
+    transition: transform 0.3s, background-color 0.3s, color 0.3s, box-shadow 0.3s; /* ანიმაცია */
+}
+
+/* მენიუს ელემენტის hover ეფექტი */
+nav li:hover {
+    background-color: #6b4e31; /* ფონის ცვლილება */
+    color: #d4bf8f; /* ტექსტის ფერის ცვლილება */
+    transform: scale(1.1); /* ზომის ზრდა */
+    cursor: pointer; /* მაუსის კურსორი */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6); /* ჩრდილის დამატება */
+}
+
+/* მენიუს ელემენტის აქტიური მდგომარეობა */
+nav li:active {
+    background-color: #2b1d12; /* ფონის ცვლილება აქტიური ელემენტისთვის */
+    transform: scale(0.95); /* ზომის შემცირება */
+}
+
+/* ჰიპერლინკების სტილი მენიუში */
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px; /* მეტი სივრცე ლინკებს შორის */
+    font-weight: bold;
+    letter-spacing: 1px; /* ფართო თარე ასოებისათვის */
+    font-size: 18px; /* ტექსტის ზომა */
+    text-shadow: 1px 1px 2px #000; /* ტექსტზე ჩრდილი */
+}
+
+/* მენიუში ჰიპერლინკების hover ეფექტი */
+nav a:hover {
+    text-decoration: underline; /* ტექსტი დაიქვემდებარება ხაზს */
+    color: #d4bf8f; /* ტექსტის ფერი გახდება ნაზი ოქროსფერი */
+    transform: scale(1.1); /* ვიზუალური ზომის ზრდა, ბადებს ვიზუალურ ეფექტს, მაგრამ არ გავლენას ახდენს სტრუქტურაზე */
+}
+
+
+
+/* მობილური მოწყობილობების სტილი */
+@media (max-width: 768px) {
+    nav {
+        padding: 10px;
+        display: block; /* ფლექსის ნაცვლად ბლოკის გამოყენება */
+    }
+    nav ul {
+        flex-direction: column; /* ვერტიკალური განლაგება */
+        align-items: center;
+        gap: 10px; /* სივრცის შემცირება */
+    }
+    nav li {
+        padding: 10px 15px;
+        font-size: 16px; /* ტექსტის ზომის შემცირება */
+    }
+    nav a {
+        font-size: 16px;
+    }
+}
+
+/* პატარა ეკრანებისთვის */
+@media (max-width: 480px) {
+    nav li {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    nav a {
+        font-size: 14px;
+    }
+}
+
+
+
+
+/* Hero-ის სტილი (მაღალი სექცია, მაგალითად: სლაიდშოუ ან ჰედლაინი) */
+.hero {
+    position: relative;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    overflow: hidden;
+}
+
+/* Hero სექციის ტექსტის სტილი */
+.hero h1 {
+    position: absolute;
+    z-index: 10;
+    font-size: 3em;
+    text-align: center;
+    animation: fadeInDown 2s ease-in-out; /* ანიმაცია ტექსტის ჩამოსვლისთვის */   
+  }
+
+
+/* HTML: <div class="loader"></div> */
+.hero h1 {
+    width: fit-content;
+    font-size: 40px;
+    font-family: system-ui,sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #0000;
+    -webkit-text-stroke: 1px #6fb349;
+    background: 
+      linear-gradient(-60deg,#0000 45%,#000 0 55%,#0000 0) 
+      0/300% 100% no-repeat text;
+    animation: l3 2s linear infinite;
+  }
+  .hero h1:before {
+    content: "";
+  }
+  @keyframes l3 {
+    0%{background-position: 100%}
+  }
+
+
+
+
+
+
+
+
+/* სლაიდშოუ სტილი */
+.slideshow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/* სლაიდშოუ სურათების სტილი */
+.slideshow img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* სურათის დათბობის ეფექტი */
+}
+
+/* აქტიური სურათის სტილი */
+.slideshow img.active {
+    opacity: 1; /* სურათის ხილვადობა */
+}
+
+/* fadeInDown ანიმაციის შესაქმნელი კოდი */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* კონტენტისთვის სტილი */
+.content {
+    padding: 2em;
+    text-align: center;
+}
+
+/* საკარტო სტილი */
+.card {
+    display: inline-block;
+    width: 90%;
+    max-width: 300px;
+    margin: 1em;
+    padding: 1em;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* საკარტოს hover ეფექტი */
+.card:hover {
+    transform: scale(1.05); /* ზომის ზრდა */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* ჩრდილის ეფექტი */
+}
+
+/* საკარტოში ლინკების სტილი */
+.card a {
+    display: inline-block;
+    text-decoration: none;
+    background: #0078D7; /* ლურჯი ფონური ფერი */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+
+
+
+
+
+
+/* საკარტოს ლინკის hover ეფექტი */
+.card a:hover {
+    background: #005BB5; /* ლურჯის მუქი ფერის ცვლილება */
+}
+
+/* გამოსახულების კონტეინერი */
+.image {
+    position: relative;
+    display: inline-block;
+    overflow: hidden; /* გამოსახულების კონტექსტში ყოფნა */
+}
+
+/* გამოსახულების სტილი */
+.image img {
+    width: 100%;
+    height: auto;
+    border-bottom: 5px solid #0078D7; /* ქვედა საზღვარი */
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* გამოსახულების hover ეფექტი */
+.image img:hover {
+    transform: scale(1.05); /* გამოსახულების მასშტაბირება */
+    filter: brightness(1.2); /* განათების ეფექტი */
+}
+
+/* ღილაკის სტილი */
+.btn {
+    display: inline-block;
+    padding: 0.5em 1em;
+    background-color: #4caf50; /* მწვანე ფონური ფერი */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin: 1em 0;
+}
+
+/* ღილაკის hover ეფექტი */
+.btn:hover {
+    background-color: #45a049; /* მწვანე ფერის შეცვლა */
+}
+
+/*footer სტილი */
+footer {
+   
+   
+        --s: 200px; /* control the size*/
+        --c1: #1d1d1d;
+        --c2: #4e4f51;
+        --c3: #3c3c3c;
+        
+        background:
+          repeating-conic-gradient(from 30deg,#0000 0 120deg,var(--c3) 0 50%) 
+           calc(var(--s)/2) calc(var(--s)*tan(30deg)/2),
+          repeating-conic-gradient(from 30deg,var(--c1) 0 60deg,var(--c2) 0 120deg,var(--c3) 0 50%);
+        background-size: var(--s) calc(var(--s)*tan(30deg));
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* მედია კითხვები, რათა საკარტო ელემენტები იყოს 30% სიგანე */
+@media (min-width: 600px) {
+    .card {
+        width: 30%;
+    }
+}
+
+
+
+
+
+
+
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* ჰამბურგერ მენიუს სტილი */
+.hamburger-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 35px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 2; /* მენიუზე ზემოთ ჩანს */
+}
+
+.hamburger-menu div {
+    width: 30px;
+    height: 4px;
+    background-color: #33752c;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+/* ჰამბურგერის აქტიური მდგომარეობა */
+.hamburger-menu.active div:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+}
+
+.hamburger-menu.active div:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active div:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+}
+
+/* მენიუს სტილი */
+#menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #3b2f2f;
+    border: 2px solid #4a3826;
+    border-radius: 10px;
+    width: fit-content;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    display: none; /* საწყისი მდგომარეობა დამალული */
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    z-index: 1;
+}
+
+#menu li {
+    display: block;
+    padding: 10px 20px;
+    background: linear-gradient(145deg, #5a432c, #3b2f2f);
+    color: #f5f2e9;
+    border: 1px solid #4a3826;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#menu li:hover {
+    background-color: #6b4e31;
+    color: #d4bf8f;
+}
+
+#menu li:active {
+    background-color: #2b1d12;
+}
+
+/* მობილური მოწყობილობებისთვის */
+@media (max-width: 768px) {
+    /* ჰამბურგერი და მენიუ */
+    .hamburger-menu {
+        top: 15px;
+        right: 15px;
+    }
+
+    #menu {
+        width: 80%; /* ეკრანის 80% */
+        right: 10%; /* ცენტრში */
+        text-align: center; /* ტექსტის ცენტრი */
+    }
+
+    #menu li {
+        font-size: 16px;
+        padding: 12px; /* მცირე სივრცე ელემენტებს შორის */
+    }
+}
+
+/* პატარა ეკრანებისთვის */
+@media (max-width: 480px) {
+    .hamburger-menu {
+        width: 30px;
+        height: 25px;
+    }
+
+    .hamburger-menu div {
+        width: 25px;
+        height: 3px;
+    }
+
+    #menu {
+        width: 90%; /* ეკრანის 90% */
+        right: 5%; /* ცენტრში */
+    }
+
+    #menu li {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 60px;
+    height: 40px;
+    position: relative;
+  }
+  .loader::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(farthest-side at bottom   ,#ffc10a 92%,#0000)   top          /30px 15px,
+      radial-gradient(farthest-side at top left ,#0000   92%,#ffc10a) bottom left / 15px 20px,
+      radial-gradient(farthest-side at top right,#0000   92%,#ffc10a) bottom right/ 15px 20px,
+      linear-gradient(#ffc10a 0 0) bottom/30px 26px;
+    background-repeat: no-repeat;
+    transform-origin: 50% -3px;
+    animation: l10-1 .5s infinite alternate linear;
+  }
+  .loader::before {
+    content: "";
+    position: absolute;
+    inset: -6px calc(50% - 10px) -10px;
+    background: 
+       radial-gradient(farthest-side,#ff9f04 90%,#0000) top   /10px 10px, 
+       radial-gradient(farthest-side,#ff9f04 90%,#0000) bottom/20px 20px;
+    background-repeat: no-repeat;
+    transform-origin: 50% 3px;
+    animation: l10-2 .5s infinite alternate linear;
+  }
+  @keyframes l10-1 {
+    0%   {transform: rotate(-30deg)}
+    100% {transform: rotate(30deg)}
+  }
+  
+  @keyframes l10-2 {
+    0%   {transform: rotate(-20deg)}
+    100% {transform: rotate(20deg)}
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* HTML: <div class="ribbon">Your text content</div> */
+.ribbon {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+  }
+  .ribbon {
+    --s: 1.8em; /* the ribbon size */
+    --d: .8em;  /* the depth */
+    --c: .8em;  /* the cutout part */
+    
+    padding: 0 calc(var(--s) + .5em) var(--d);
+    line-height: 1.8;
+    background:
+      conic-gradient(at left  var(--s) bottom var(--d),
+       #0000 25%,#0008 0 37.5%,#0004 0) 0   /50% 100% no-repeat,
+      conic-gradient(at right var(--s) bottom var(--d),
+       #0004 62.5%,#0008 0 75%,#0000 0) 100%/50% 100% no-repeat;
+    clip-path: polygon(0 var(--d), var(--s) var(--d),var(--s) 0,calc(100% - var(--s)) 0,calc(100% - var(--s)) var(--d),100% var(--d),calc(100% - var(--c)) calc(50% + var(--d)/2),100% 100%,calc(100% - var(--s) - var(--d)) 100%,calc(100% - var(--s) - var(--d)) calc(100% - var(--d)),calc(var(--s) + var(--d)) calc(100% - var(--d)),calc(var(--s) + var(--d)) 100%,0 100%,var(--c) calc(50% + var(--d)/2));
+    background-color: #CC333F; /* the main color */
+    width: fit-content;
+  }
+
+
+
+
+
+
+
+
+/* HTML: <div class="ribbon">Your text content</div> */
+.love {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+  }
+  .love {
+    --c: #DFBA69;
+    /* control the ribbon shape (adjust each variable to understand what it does) */
+    --a: 56deg; 
+    --r: 6deg; 
+    --s: 1.6em;
+    
+    padding: 1.3em; /* you may need to adjust this based on your content */
+    aspect-ratio: 1;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+    width: fit-content;
+  }
+  .love:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: calc(50% - var(--s)/2) -150% auto; /* you can also adjust the 150% to control the shape */
+    border-radius: 999px 999px 0 0;
+    aspect-ratio: 2;
+    border: var(--s) solid color-mix(in srgb, var(--c), #000 35%);
+    border-bottom: none;
+    clip-path: polygon(
+      100% 0,
+      calc(50% + 50%*cos(var(--a))) calc(100% - 100%*sin(var(--a))),
+      calc(50% + (50% - var(--s)/2)*cos(var(--a) + var(--r))) calc(100% - (100% - var(--s)/2)*sin(var(--a) + var(--r))),
+      calc(50% + (50% - var(--s))*cos(var(--a))) calc(100% - (100% - var(--s))*sin(var(--a))),
+      50% 100%,
+      calc(50% - (50% - var(--s))*cos(var(--a))) calc(100% - (100% - var(--s))*sin(var(--a))),
+      calc(50% - (50% - var(--s)/2)*cos(var(--a) + var(--r))) calc(100% - (100% - var(--s)/2)*sin(var(--a) + var(--r))),
+      calc(50% - 50%*cos(var(--a))) calc(100% - 100%*sin(var(--a))),
+      0 0
+    );
+  }
+  .love:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 10%;
+    rotate: 45deg;
+    outline: .1em solid #0003;
+    background: var(--c);
+    outline-offset: -.4em;
+    border-radius: .3em;
+  }
+
+
+
+
+
+
+/* HTML: <div class="loader"></div> */
+.test {
+    width: 50px;
+    aspect-ratio: 1.154;
+    position: relative;
+    background: conic-gradient(from 120deg at 50% 64%,#0000, #25b09b 1deg 120deg,#0000 121deg);
+    animation: l27-0 1.5s infinite cubic-bezier(0.3,1,0,1);
+  }
+  .test:before,
+  .test:after {
+    content:'';
+    position: absolute;
+    inset:0;
+    background:inherit;
+    transform-origin: 50% 66%;
+    animation: l27-1 1.5s infinite;
+  }
+  .test:after {
+    --s:-1;
+  }
+  @keyframes l27-0 {
+     0%,30%      {transform: rotate(0)}
+     70%         {transform: rotate(120deg)}
+     70.01%,100% {transform: rotate(360deg)}
+  }
+  @keyframes l27-1 {
+     0%      {transform: rotate(calc(var(--s,1)*120deg)) translate(0)}
+     30%,70% {transform: rotate(calc(var(--s,1)*120deg)) translate(calc(var(--s,1)*-5px),10px)}
+     100%    {transform: rotate(calc(var(--s,1)*120deg)) translate(0)}
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* HTML: <div class="loader"></div> */
+.home {
+    width: fit-content;
+    font-size: 40px;
+    line-height: 1.5;
+    font-family: system-ui,sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #0000;
+    -webkit-text-stroke: 1px #6fb349;
+    background:
+      radial-gradient(1.13em at 50% 1.6em,#000 99%,#0000 101%) calc(50% - 1.6em) 0/3.2em 100% text,
+      radial-gradient(1.13em at 50% -0.8em,#0000 99%,#000 101%) 50% .8em/3.2em 100% repeat-x  text;
+    animation: l9 2s linear infinite;
+  }
+  .home:before {
+    content: "";
+  }
+  @keyframes l9 {
+    to {background-position: calc(50% + 1.6em) 0,calc(50% + 3.2em) .8em}
+  }  
+
+
+
+
+
+
+
+
+
+  
+
+
+/* HTML: <div class="loader"></div> */
+.kvali {
+    width: calc(6*30px);
+    height: 50px;
+    display: flex;
+    color: #8d7958;
+    filter: drop-shadow(30px 25px 0 currentColor) drop-shadow(60px 0 0 currentColor) drop-shadow(120px 0 0 currentColor);
+    clip-path: inset(0 100% 0 0);
+    animation: l12 2s infinite steps(7);
+  }
+  .kvali:before {
+    content: "";
+    width: 30px;
+    height: 25px;
+    --c:no-repeat radial-gradient(farthest-side,currentColor 92%,#0000);
+    background: 
+      var(--c) left /70% 70%,
+      var(--c) right/20% 20%,
+      var(--c) top    0 right 15%/20% 20%,
+      var(--c) bottom 0 right 15%/20% 20%;
+  }
+  @keyframes l12 {
+    100% {clip-path: inset(0 -30px 0 0)}
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 11vh; /* ვერტიკალური ცენტრში განთავსებისთვის */
+    
+  }
+  
+
+
+
+

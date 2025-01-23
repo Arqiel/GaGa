@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>საიტის რუკა - მონადირის საიტი</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<style>
+
+/* საერთო სტილები */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* საიტის რუკის კონტეინერი */
+#sitemap {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transform: scale(0.98);
+    transition: transform 0.3s ease-in-out;
+}
+
+#sitemap:hover {
+    transform: scale(1);
+}
+
+/* ტაიტლი */
+#sitemap h1 {
+    text-align: center;
+    font-size: 36px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+#sitemap h1:hover {
+    color: #e74c3c;
+}
+
+/* სექციები */
+#sitemap ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#sitemap li {
+    margin-bottom: 20px;
+    padding-left: 10px;
+    border-left: 4px solid #3498db;
+    transition: border-color 0.3s;
+}
+
+#sitemap li:hover {
+    border-color: #e74c3c;
+}
+
+#sitemap li a {
+    text-decoration: none;
+    color: #2980b9;
+    font-size: 20px;
+    transition: color 0.3s, padding-left 0.3s;
+}
+
+#sitemap li a:hover {
+    color: #e74c3c;
+    padding-left: 10px;
+}
+
+/* წარწერის დამატება */
+#sitemap li a::before {
+    content: "🔹 ";
+    transition: transform 0.3s;
+}
+
+#sitemap li a:hover::before {
+    transform: translateX(5px);
+}
+
+/* ქვედა მენიუ */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 16px;
+    color: #7f8c8d;
+    transition: color 0.3s;
+}
+
+footer a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: #e74c3c;
+}
+
+/* ანიმაციის დამატება */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#sitemap {
+    animation: fadeIn 1s ease-out;
+}
+
+/* Responsive სტილი */
+@media (max-width: 768px) {
+    #sitemap {
+        padding: 20px;
+    }
+
+    #sitemap h1 {
+        font-size: 28px;
+    }
+
+    #sitemap li a {
+        font-size: 18px;
+    }
+
+    footer {
+        font-size: 14px;
+    }
+}
+
+</style>
+
+<body>
+    <header>
+        <h1>საიტის რუკა</h1>
+    </header>
+
+    <div id="sitemap">
+        <main>
+            <ul>
+                <li><a href="https://example.com/">მთავარი გვერდი</a></li>
+                <li><a href="https://example.com/#about">ჩვენ შესახებ</a></li>
+                <li><a href="https://example.com/#seasons">სეზონები</a></li>
+                <li><a href="https://example.com/#gear">აღჭურვილობა</a></li>
+                <li><a href="https://example.com/#contact">კონტაქტი</a></li>
+            </ul>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 მონადირეთა სამყარო. ყველა უფლება დაცულია. <a href="https://example.com/">წაკითხვა</a></p>
+    </footer>
+</body>
+</html>

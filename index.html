@@ -3,154 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ნადირობა მთაში</title>
-    <style>
-        /* ძირითადი სტილი */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-
-        /* ჰედერი */
-        header {
-            background-color: #2d6a4f;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2rem;
-        }
-
-        /* ნავიგაცია */
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #40916c;
-            padding: 10px 0;
-        }
-
-        nav a, .dropdown .dropbtn {
-            font-size: 16px;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        nav a:hover, .dropdown:hover .dropbtn {
-            background-color: #95d5b2;
-            color: #2d6a4f;
-        }
-
-        /* ჩამოსაშლელი მენიუ */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: white;
-            min-width: 200px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-
-        .dropdown-content a {
-            color: #333;
-            padding: 10px 15px;
-            display: block;
-            text-decoration: none;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #40916c;
-            color: white;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        /* მთავარი კონტენტი */
-        .content {
-            padding: 30px;
-            text-align: center;
-        }
-
-        .content h2 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            color: #2d6a4f;
-        }
-
-        .content p {
-            font-size: 1rem;
-            color: #555;
-        }
-
-        /* ქვედა კოლონტიტული */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #2d6a4f;
-            color: white;
-            margin-top: 20px;
-        }
-
-        footer p {
-            margin: 0;
-            font-size: 0.9rem;
-        }
-    </style>
+    <meta name="description" content="მონადირეთა სამყარო - ინფორმაცია სანადირო სეზონებზე, აღჭურვილობაზე და სხვა მნიშვნელოვან დეტალებზე.">
+    <meta name="keywords" content="მონადირე, სანადირო სეზონი, აღჭურვილობა, ნადირობა">
+    <meta name="author" content="მონადირეთა სამყარო">
+    <meta property="og:title" content="მონადირეთა სამყარო">
+    <meta property="og:description" content="გაეცანით სანადირო სამყაროს! აღმოაჩინეთ სეზონები, აღჭურვილობა და მეტი.">
+    <meta property="og:image" content="./foto/ihc3log87u5byrygb0uy6tz9k0081fvw.webp">
+    <meta property="og:url" content="https://example.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>მონადირის საიტი</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header>
+        <!-- გვერდის სათაური, რომელიც შინაარსს აღწერს -->
+            <h1>კეთილი იყოს თქვენი მობრძანება მონადირეთა სამყაროში</h1>
+    </header>
+   
+    <!-- ჰამბურგერის მენიუ, რომლის onclick ივენთი აქტიურობს JavaScript ფუნქციას "toggleMenu()" -->
+    <div class="hamburger-menu" onclick="toggleMenu()">
+        <div></div> <!-- ჰამბურგერის მენიუს ხაზები -->
+        <div></div>
+        <div></div>
+    </div>
+    
+    <!-- ნავიგაციის მენიუ, რომელიც შეიცავს შიდა ბმულებს სხვადასხვა სექციისთვის -->
+    <nav>
+        <ul>
+            <li><a href="#about">ჩვენ შესახებ</a></li>
+            <li><a href="#seasons">სეზონები</a></li>
+            <li><a href="#gear">აღჭურვილობა</a></li>
+            <li><a href="#contact">კონტაქტი</a></li>
+        </ul>
+    </nav>
 
-<header>
-    <h1>მოგესალმებით ჩვენს საიტზე</h1>
-</header>
+    <!-- დამატებითი მენიუ, რომელიც შესაძლოა ჰამბურგერის მენიუთი იმართებოდეს -->
+    <ul id="menu">
+        <li>მთავარი</li>
+        <li>ბლოგი</li>
+        <li>ფორუმი</li>
+        <li>ფორუმი</li>
+        <div class="test"></div>
+    </ul>
 
-<nav>
-    <a href="#">მთავარი</a>
+    <!-- ჰერო სექცია, რომელშიც განთავსებულია სათაური და სლაიდშოუ -->
+    <div class="hero">
+        
 
-    <div class="dropdown">
-        <a class="dropbtn" href="#">ისტორია</a>
-        <div class="dropdown-content">
-            <a href="subcategory1.html">შესავალი</a>
-            <a href="livingroom.html">მეორე ქვეკატეგორია</a>
-            <a href="kitchen.html">მესამე ქვეკატეგორია</a>
+
+
+        <h1>აღმოაჩინეთ ველური ბუნება</h1>
+        <div class="slideshow">
+            <!-- სლაიდშოუს სურათები, რომელთაგან ერთ-ერთი აქტიურია -->
+            <img src="./FOTO/05.webp" alt="ველური ბუნება" class="active">
+            <img src="./FOTO/06.webp" alt="მონადირეთა აღჭურვილობა">
+            <img src="./FOTO/07.png" alt="მონადირეთა სეზონი">
         </div>
     </div>
 
-    <div class="dropdown">
-        <a class="dropbtn" href="#">გალერეა</a>
-        <div class="dropdown-content">
-            <a href="bedroom.html">ვიდეო</a>
-            <a href="slaidshiu.html">ფოტო</a>
-            <a href="gallery3.html">მესამე ქვეკატეგორია</a>
+    <!-- სექცია "ჩვენ შესახებ", რომელიც შეიცავს ინფორმაციას და ბმულს -->
+    <section id="about" class="content">
+<br>
+        <div class="center-container">
+            <div class="love">GaGa</div>
+            </div>
+<br>
+<br>
+
+
+        <h2>ჩვენ შესახებ</h2>
+        <p>ჩვენ ვაწვდით მონადირეთა თემატიკასთან დაკავშირებულ აუცილებელ ინფორმაციას, დაწყებული ლიცენზიებიდან აღჭურვილობის მიმოხილვამდე.</p>
+        <a href="#contact" class="btn">დაგვიკავშირდით</a>   
+    </section>
+
+    <!-- სექცია "სანადირო სეზონები", რომელიც მოიცავს რამდენიმე კარტას -->
+    <section id="seasons" class="content">
+
+        <div class="center-container">
+        <div class="ribbon">გაეცანით უახლეს სტატიებს</div>
         </div>
-    </div>
 
-    <a href="contact.html">კონტაქტი</a>
-</nav>
+        <div class="center-container">
+        <div class="kvali"></div>
+        </div>
 
-<div class="content">
-    <h2>კეთილი იყოს თქვენი მობრძანება!</h2>
-    <p>აირჩიეთ სექცია მენიუდან და აღმოაჩინეთ ჩვენი საიტის შესაძლებლობები.</p>
-</div>
 
-<footer>
-    <p>&copy; 2024 ნადირობა მთაში. ყველა უფლება დაცულია.</p>
-</footer>
+        <h2>სანადირო სეზონები</h2>
+        <div class="card">
+            <div class="image">
+                <img src="./FOTO/01.jpg" alt="მარტვილის კანიონი">
+            </div>
+            <h3>ირემის ნადირობა</h3>
+            <p>სეზონი: ოქტომბერი - დეკემბერი</p>
+            <br>
+            <a href="#">გაიგე მეტი</a>
 
+
+            <div class="center-container">
+                <div class="loader"></div>
+              </div>
+
+
+
+
+        </div>
+        <div class="card">
+            <div class="image">
+                <img src="./FOTO/02.jpg" alt="მარტვილის კანიონი">
+            </div>
+            <h3>იხვების ნადირობა</h3>
+            <p>სეზონი: სექტემბერი - ნოემბერი</p>
+            <br>
+            <a href="#">გაიგე მეტი</a>
+
+            <div class="center-container">
+                <div class="loader"></div>
+              </div>
+
+
+        </div>
+        <div class="card">
+            <div class="image">
+                <img src="./FOTO/04.jpg" alt="მარტვილის კანიონი">
+            </div>
+            <h3>ველური ინდაურის ნადირობა</h3>
+            <p>სეზონი: აპრილი - მაისი</p>
+            <br>
+            <a href="#">გაიგე მეტი</a>
+
+
+            <div class="center-container">
+                <div class="loader"></div>
+              </div>
+
+
+        </div>
+    </section>
+
+    <!-- სექცია "აღჭურვილობა", რომელიც რეკომენდაციებს აღწერს -->
+    <section id="gear" class="content">
+        <h2>რეკომენდებული აღჭურვილობა</h2>
+        <p>აღმოაჩინეთ ჩვენი შერჩეული საუკეთესო სანადირო აღჭურვილობა, რათა გააუმჯობესოთ თქვენი გამოცდილება.</p>
+    </section>
+
+
+ 
+    
+
+
+
+
+
+
+
+
+    <!-- ქვედა სექცია, სადაც მითითებულია საავტორო უფლებები -->
+    <footer>
+        <p>&copy; 2025 მონადირეთა სამყარო. ყველა უფლება დაცულია. &#127757;</p>
+        <a href="/sitemap.html">საიტის რუკა</a>
+    </footer>
+
+    <!-- გარე JavaScript ფაილის ჩასმა, რომელიც defer ატრიბუტით იტვირთება გვერდის შინაარსის ჩატვირთვის შემდეგ -->
+    <script src="script.js" defer></script>
 </body>
 </html>
